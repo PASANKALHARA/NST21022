@@ -1,0 +1,28 @@
+line console 0
+password 1234
+login
+exit
+
+enable secret cisco
+
+ip domain-name nst21022.com
+
+
+username root secret cisco
+
+ip ssh version 2
+ip ssh authentication-retries 3
+ip ssh timeout 60
+
+line vty 0 4
+login local
+transport input ssh
+exit
+
+line vty 0 4
+exec-timeout 6 0
+exit
+
+service password-encryption
+
+banner motd #Authorized Access Only#
