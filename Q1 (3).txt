@@ -1,0 +1,58 @@
+________________________________Labsheet 13_____________________________________
+
+-----------------S01--------------------
+
+enable
+configure terminal
+vlan 10
+name Red
+vlan 20
+name Green
+name Blue
+vlan 40
+name Yello
+vlan 50
+name White
+vlan 60
+name Black
+exit
+
+interface range g0/1-2
+switchport mode access
+switchport mode trunk
+ip address 192.168.1.1 255.255.255.0
+no shutdown
+interface vlan 20
+ip address 192.168.2.1 255.255.255.0	
+no shutdown
+interface vlan 30
+ip address 192.168.3.1 255.255.255.0
+no shutdown
+interface vlan 40
+ip address 192.168.4.1 255.255.255.0
+no shutdown
+interface vlan 50
+ip address 192.168.5.1 255.255.255.0
+no shutdown
+interface vlan 60
+ip address 192.168.6.1 255.255.255.0
+no shutdown
+exit 
+hostname Colors
+
+line vty 0 15
+
+transport input ssh
+login local
+exec-timeout 6
+
+interface g0/1
+switchport mode trunk
+switchport trunk encapsulation dot1q
+ip routing
+
+copy running-config startup-config
+
+-----------------S02--------------------
+
+-----------------S03--------------------

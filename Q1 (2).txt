@@ -1,0 +1,142 @@
+________________________________Labsheet 11_____________________________________
+
+________________________________EX01_____________________________________
+
+-----------------S01--------------------
+
+enable
+configure terminal
+vlan 10
+name Red
+vlan 20
+name Green
+vlan 30
+name Blue
+vlan 999
+name Native
+exit
+
+interface range f0/1-8
+switchport mode access
+switchport access vlan 10
+interface range f0/9-16
+switchport mode access 
+switchport access vlan 20
+interface range f0/17-24
+switchport mode access	
+switchport access vlan 30
+interface range g0/1-2
+switchport mode trunk
+switchport trunk native vlan 999
+interface g0/1
+switchport mode dynamic desirable
+interface g0/2
+switchport mode trunk
+switchport nonegotiate
+
+
+
+-----------------S02--------------------
+
+enable
+configure terminal
+
+vlan 10
+name Red
+vlan 20
+name Green
+vlan 30 
+name Blue
+vlan 999
+name Native
+interface g0/1
+switchport mode trunk
+switchport trunk native vlan 999 
+
+-----------------S03--------------------
+
+enable 
+configure terminal
+vlan 10
+name Red
+vlan 20
+name Green
+vlan 30
+name Blue
+vlan 999
+name Native
+interface range f0/1-8
+switchport mode access
+switchport access vlan 10
+interface range f0/9-16
+switchport mode access
+switchport access vlan 20
+interface range f0/17-24
+switchport mode access 
+switchport access vlan 30
+interface g0/2
+switchport mode trunk
+switchport trunk native vlan 999
+switchport nonegotiate  
+
+
+________________________________EX02_____________________________________
+
+-----------------R01--------------------
+
+enable
+configure terminal
+
+
+interface g0/0/0.10
+encapsulation dot1Q 10
+ip address 192.168.1.1 255.255.255.0
+no shutdown
+
+interface g0/0/0
+no shutdown
+
+interface g0/0/0.20
+encapsulation dot1Q 20
+ip address 192.168.2.1 255.255.255.0
+no shutdown
+
+interface g0/0/0.30	
+encapsulation dot1Q 30
+ip address 192.168.3.1 255.255.255.0
+no shutdown
+
+
+
+-----------------S01--------------------
+
+enable
+configure terminal
+
+vlan 10
+name Staffs
+vlan 20
+name Students
+vlan 30
+name Guests
+
+interface range f0/1-2
+switchport mode access 
+switchport access vlan 10
+interface range f0/11-12
+switchport access vlan 20
+interface range f0/11-12
+switchport mode access 
+switchport access vlan 20
+interface range f0/21-22
+switchport mode access 
+switchport access vlan 30
+exit
+
+interface g0/1
+switchport mode trunk
+switchport nonegotiate
+
+
+
+

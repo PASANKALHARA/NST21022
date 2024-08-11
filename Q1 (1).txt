@@ -1,0 +1,223 @@
+________________________________Labsheet 11_____________________________________
+
+-----------------S01--------------------
+
+enable
+configure terminal
+hostname S1
+
+
+ip domain-name ccna.com
+vlan 10
+name Staff
+vlan 20
+name Student
+vlan 30
+name Guest
+vlan 99
+name Management
+vlan 150
+name VOICE
+
+
+	
+interface range g0/1-2	
+switchport mode trunk
+switchport trunk native vlan 99
+
+exit
+interface vlan 99
+ip address 192.168.4.11 255.255.255.0
+no shutdown
+exit
+
+username root secret cisco
+	
+crypto key generate rsa
+
+How many bits in the modulus [512]: 1024
+% Generating 1024 bit RSA keys, keys will be non-exportable...[OK]
+
+line vty 0 15
+transport input ssh
+login local
+	
+exec-timeout 6
+exit
+
+end
+copy running-config startup-config
+
+-----------------S02--------------------
+
+enable
+configure terminal
+
+hostname S2
+
+ip domain-name ccna.com
+
+vlan 10	
+name Staff
+vlan 20
+name Student
+vlan 30
+name Guest
+vlan 150
+name VOICE
+vlan 99
+name Management
+
+
+interface f0/1
+switchport mode access
+switchport access vlan 10
+interface f0/11
+switchport mode access 
+switchport access vlan 20
+interface f0/21
+switchport mode access 
+switchport access vlan 30
+interface f0/24
+switchport mode access
+switchport access vlan 99
+
+
+interface g0/1
+switchport mode trunk
+
+switchport trunk na vlan 99
+switchport trunk na
+switchport trunk native vlan 99
+
+exit
+
+
+interface vlan 99
+ip address 192.168.4.10 255.255.255.0
+no shutdown
+
+exit
+
+	
+username root secret cisco
+crypto key generate rsa
+
+
+How many bits in the modulus [512]: 1024
+% Generating 1024 bit RSA keys, keys will be non-exportable...[OK]
+
+line vty 0 15
+
+transport input ssh
+login local
+xec-timeout 6
+
+end
+copy running-config startup-config
+
+
+-----------------S03--------------------
+
+enable
+configure terminal
+
+hostname S2
+
+ip domain-name ccna.com
+
+vlan 10	
+name Staff
+vlan 20
+name Student
+vlan 30
+name Guest
+vlan 150
+name VOICE
+vlan 99
+name Management
+
+
+interface f0/1
+switchport mode access
+switchport access vlan 10
+interface f0/11
+switchport mode access 
+switchport access vlan 20
+interface f0/21
+switchport mode access 
+switchport access vlan 30
+interface f0/24
+switchport mode access
+switchport access vlan 99
+
+
+interface g0/1
+switchport mode trunk
+
+switchport trunk na vlan 99
+switchport trunk na
+switchport trunk native vlan 99
+
+exit
+
+
+interface vlan 99
+ip address 192.168.4.12 255.255.255.0
+no shutdown
+
+exit
+
+	
+username root secret cisco
+crypto key generate rsa
+
+
+How many bits in the modulus [512]: 1024
+% Generating 1024 bit RSA keys, keys will be non-exportable...[OK]
+
+line vty 0 15
+
+transport input ssh
+login local
+xec-timeout 6
+
+end
+copy running-config startup-config
+
+
+
+--------------------PC(A)---------------
+IP :-
+Subnet Mask :-
+Defalt Getaway :-
+
+--------------------PC(B)---------------
+IP :-
+Subnet Mask :-
+Defalt Getaway :-
+
+--------------------PC(C)---------------
+IP :-
+Subnet Mask :-
+Defalt Getaway :-
+
+--------------------PC(D)---------------
+IP :-
+Subnet Mask :-
+Defalt Getaway :-
+
+--------------------PC(E)---------------
+IP :-
+Subnet Mask :-
+Defalt Getaway :-
+
+--------------------PC(F)---------------
+IP :-
+Subnet Mask :-
+Defalt Getaway :-
+
+--------------------PC(Management)---------------
+IP :-
+Subnet Mask :-
+Defalt Getaway :-
