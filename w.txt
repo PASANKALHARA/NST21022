@@ -1,0 +1,22 @@
+interface g0/0/0.30
+encapsulation dot1Q 30
+ip address 192.168.3.1 255.255.255.0
+
+interface g0/1
+switchport mode trunk
+switchport nonegotiate
+
+ip domain-name ft.com
+
+crypto key generate rsa
+
+username nst secret 21022
+
+line vty 0 4
+transport input ssh
+login local
+
+exec-timeout 5 0
+ip ssh version 2
+
+banner motd *WARNING: Unauthorized access is prohibited*
